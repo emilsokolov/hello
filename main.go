@@ -2,17 +2,30 @@ package main
 
 import (
 	"fmt"
+
+	"golang.org/x/exp/maps"
+	"golang.org/x/exp/slices"
 )
 
-func main() {
+func sumOfEven(s []int) int {
 	k := 0
-	arr := [5]int{2, 13, 16, 7, 9}
 	for i := 0; i < 5; i++ {
-
-		if arr[i]%2 == 0 {
-			k += arr[i]
+		if s[i]%2 == 0 {
+			k += s[i]
 		}
 	}
-	fmt.Println(k)
+	return k
+}
 
+func main() {
+	max := maxOccur("❤❤aabccc❤❤cdd😊❤❤")
+	fmt.Println(max)
+}
+
+func maxOccur(s string) int {
+	counts := make(map[string]int)
+	for _, v := range s {
+		counts[string(v)]++
+	}
+	return slices.Max(maps.Values(counts))
 }
